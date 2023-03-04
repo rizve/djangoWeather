@@ -2,4 +2,49 @@
 
 {% block content %}
     <h1>Hello World Rizve!</h1>
+    {% if zipco %}
+      {{zipco}}
+    {% endif %}
+    <br>
+    {% if api %}
+        {% if api == "Error.." %}
+            There is an Error Please Try Again.
+        {% else %}
+            <table class="table">
+                <thead>
+                  <tr class="odd grade">
+                    <!-- <th scope="col" class="text-center">#</th> -->
+                    <th scope="col"class="text-center">Date</th>
+                    <th scope="col"class="text-center">Reporting Area</th>
+                    <th scope="col"class="text-center">Air Quality</th>
+                    <th scope="col"class="text-center">Category</th>
+                    <th scope="col"class="text-center">Color</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for i in api %}
+                  <tr class="odd grade">
+                    <!-- <th scope="row"class="text-center"></th> -->
+                    <td class="text-center">{{i.DateObserved}}</td>
+                    <td class="text-center">{{i.ReportingArea}}</td>
+                    <td class="text-center">{{i.AQI}}</td>
+                    <td class="text-center">{{i.Category.Name}}</td>
+                    
+                    <td class="text-center">
+                        <span class="glyphicon glyphicon-check"></span>
+                    </td>
+                    
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            
+        {% endif %}
+    {% endif %}
+
+
+    
+
+
+
 {% endblock %}
